@@ -11,7 +11,7 @@ steps:
     - "flex-template"
     - "build"
     - "gs://${_BUCKET_NAME}/${_PIPELINE_NAME}/dataflow-flex-template.json"
-    - "--image-gcr-path=${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/${_PIPELINE_NAME}-dataflow-flex-template:latest"
+    - "--image-gcr-path=${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataflow-flex-template:latest"
     - "--sdk-language=JAVA"
     - "--flex-template-base-image=JAVA11"
     - "--metadata-file=metadata.json"
