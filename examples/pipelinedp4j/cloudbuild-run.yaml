@@ -1,0 +1,25 @@
+steps:
+  - name: google/cloud-sdk:slim
+    args:
+    - "gcloud"
+    - "dataflow"
+    - "flex-template"
+    - "run"
+    - "${_PIPELINE_NAME}"
+    - "--template-file-gcs-location=gs://${_BUCKET_NAME}/${_PIPELINE_NAME}/dataflow-flex-template.json"
+    - "--project=${PROJECT_ID}"
+    - "--region=${_LOCATION}"
+    - "--service-account-email=${_SERVICE_ACCOUNT_EMAIL}"
+    - "--temp-location=gs://${_BUCKET_NAME}/temp"
+    - "--staging-location=gs://${_BUCKET_NAME}/staging"
+    - "--parameters=inputFilePath=gs://${_INPUT_GCS_PATH}"
+    - "--parameters=outputFilePath=gs://${_OUTPUT_GCS_PATH}"
+substitutions:
+  _PIPELINE_NAME: differential-privacy
+  _BUCKET_NAME: movsic-dataflow-templates
+  _SERVICE_ACCOUNT_EMAIL: dp-dataflow@${PROJECT_ID}.iam.gserviceaccount.com
+  _LOCATION: europe-west4
+  _INPUT_GCS_PATH: movsic-dataflow-templates/input/netflix_data.csv
+  _OUTPUT_GCS_PATH: movsic-dataflow-templates/output/
+options:
+  logging: CLOUD_LOGGING_ONLY

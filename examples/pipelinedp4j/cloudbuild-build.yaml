@@ -1,0 +1,29 @@
+steps:
+  - name: maven:3.8.6-openjdk-11-slim
+    dir: examples/pipelinedp4j
+    entrypoint: mvn
+    args: ['clean', 'package']
+  - name: google/cloud-sdk:slim
+    dir: examples/pipelinedp4j
+    args:
+    - "gcloud"
+    - "dataflow"
+    - "flex-template"
+    - "build"
+    - "gs://${_BUCKET_NAME}/${_PIPELINE_NAME}/dataflow-flex-template.json"
+    - "--image-gcr-path=${_ARTIFACT_REPOSITORY}/${_PIPELINE_NAME}/${_PIPELINE_NAME}-dataflow-flex-template:latest"
+    - "--sdk-language=JAVA"
+    - "--flex-template-base-image=JAVA11"
+    - "--metadata-file=metadata.json"
+    - "--jar=${_JAR}"
+    - "--env=FLEX_TEMPLATE_JAVA_MAIN_CLASS=${_FLEX_TEMPLATE_JAVA_MAIN_CLASS}"
+    #- "--cloud-build-service-account=dp-cloudbuild@${PROJECT_ID}.iam.gserviceaccount.com
+substitutions:
+  _PIPELINE_NAME: differential-privacy
+  _BUCKET_NAME: movsic-dataflow-templates
+  _ARTIFACT_REGISTRY_NAME: europe-west4-docker.pkg.dev/${PROJECT_ID}/movsic-artifact-registry
+  _JAR: target/.jar
+  _FLEX_TEMPLATE_JAVA_MAIN_CLASS: com.google.privacy.differentialprivacy.pipelinedp4j.examples.BeamExample
+serviceAccount: dp-cloudbuild@${PROJECT_ID}.iam.gserviceaccount.com
+options:
+  logging: CLOUD_LOGGING_ONLY
