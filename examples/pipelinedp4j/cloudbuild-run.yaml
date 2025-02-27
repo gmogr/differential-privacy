@@ -8,7 +8,7 @@ steps:
     - "${_PIPELINE_NAME}"
     - "--template-file-gcs-location=gs://${_BUCKET_NAME}/${_PIPELINE_NAME}/dataflow-flex-template.json"
     - "--project=${PROJECT_ID}"
-    - "--region=${_LOCATION}"
+    #- "--region=${_LOCATION}"
     - "--service-account-email=${_SERVICE_ACCOUNT_EMAIL}"
     #- "--temp-location=gs://${_BUCKET_NAME}/temp"
     #- "--staging-location=gs://${_BUCKET_NAME}/staging"
