@@ -17,7 +17,7 @@ steps:
     - "--metadata-file=metadata.json"
     - "--jar=${_JAR}"
     - "--env=FLEX_TEMPLATE_JAVA_MAIN_CLASS=${_FLEX_TEMPLATE_JAVA_MAIN_CLASS}"
-    #- "--cloud-build-service-account=dp-cloudbuild@${PROJECT_ID}.iam.gserviceaccount.com"
+    - "--cloud-build-service-account=dp-cloudbuild@${PROJECT_ID}.iam.gserviceaccount.com"
 substitutions:
   _PIPELINE_NAME: differential-privacy
   _BUCKET_NAME: movsic-dataflow-templates
