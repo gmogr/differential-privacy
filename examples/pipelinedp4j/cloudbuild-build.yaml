@@ -1,8 +1,12 @@
 steps:
   - name: maven:3.8.6-openjdk-11-slim
+    dir: examples/pipelinedp4j
+    entrypoint: mvn
+    args: ['clean', 'install']
+  - name: maven:3.8.6-openjdk-11-slim
     dir: examples/pipelinedp4j/beam
     entrypoint: mvn
-    args: ['clean', 'package']
+    args: ['package']
   - name: google/cloud-sdk:slim
     dir: examples/pipelinedp4j/beam
     args:
@@ -23,7 +27,7 @@ substitutions:
   _PIPELINE_NAME: differential-privacy
   _BUCKET_NAME: movsic-dataflow-templates
   _ARTIFACT_REGISTRY_NAME: europe-west4-docker.pkg.dev/${PROJECT_ID}/movsic-artifact-registry
-  _JAR: target/pipelinedp4j-1.0-SNAPSHOT-jar-with-dependencies.jar
+  _JAR: target/beam-1.0-SNAPSHOT-jar-with-dependencies.jar
   _FLEX_TEMPLATE_JAVA_MAIN_CLASS: com.google.privacy.differentialprivacy.pipelinedp4j.examples.BeamExample
   _SERVICE_ACCOUNT: dp-cloudbuild@${PROJECT_ID}.iam.gserviceaccount.com
 options:
