@@ -23,28 +23,3 @@ substitutions:
   _OUTPUT_GCS_PATH: movsic-dataflow-templates/output/output.txt
 options:
   logging: CLOUD_LOGGING_ONLY
-
-
-  mvn -Pdataflow-runner compile exec:java 
-  -Dexec.mainClass=com.google.privacy.differentialprivacy.pipelinedp4j.examples.BeamExample
-   -Dexec.args="
-   --project=movsic-test 
-   --gcpTempLocation=gs://movsic-dataflow-templates/temp/ 
-   --inputFilePath=gs://movsic-dataflow-templates/input/netflix_data.csv 
-   --outputFilePath=gs://movsic-dataflow-templates/output.txt 
-   --runner=DataflowRunner 
-   --region=europe-west4" 
-  -Pdataflow-runner
-
-
-  java -cp /template/* com.google.privacy.differentialprivacy.pipelinedp4j.examples.BeamExample 
-  --jobName=differential-privacy 
-  --region=europe-west4 
-  --tempLocation=gs://dataflow-staging-europe-west4-473531499550/tmp 
-  --outputFilePath=gs://movsic-dataflow-templates/output/ 
-  --project=movsic-test 
-  --templateLocation=gs://dataflow-staging-europe-west4-473531499550/staging/template_launches/2025-02-27_05_56_01-5197944663171313404/job_object 
-  --serviceAccount=dp-dataflow@movsic-test.iam.gserviceaccount.com 
-  --stagingLocation=gs://dataflow-staging-europe-west4-473531499550/staging 
-  --inputFilePath=gs://movsic-dataflow-templates/input/netflix_data.csv 
-  --runner=DataflowRunner
