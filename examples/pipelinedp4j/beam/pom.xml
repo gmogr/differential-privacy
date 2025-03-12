@@ -53,7 +53,14 @@
             <artifactId>beam-sdks-java-core</artifactId>
             <version>${beam.version}</version>
         </dependency>
-     </dependencies>
+
+        <!-- Adds a dependency on the Dataflow to run on GCP. -->
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-runners-google-cloud-dataflow-java</artifactId>
+            <version>${beam.version}</version>
+        </dependency>
+    </dependencies>
 
     <!-- Necessary to downgrade jackson-databind from 2.15.4 to 2.13.5 because otherwise jackson-databind from beam-sdks-java-core (2.62.0) is not compatible with jackson-module-scala_2.13 (2.13.4) from PipelineDP4j (0.0.3). -->
     <!-- TODO: upgrade scala module version and create new PipelineDP4j maven release to remove this dependency management. -->
@@ -86,15 +93,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <!-- Makes the DataflowRunner available when running a pipeline. -->
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.beam</groupId>
-                    <artifactId>beam-runners-google-cloud-dataflow-java</artifactId>
-                    <version>${beam.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
         </profile>
     </profiles>
 </project>
