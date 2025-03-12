@@ -92,7 +92,7 @@ public final class BeamExample {
 
   public static void main(String[] args) {
     BeamExampleOptions options =
-        PipelineOptionsFactory.fromArgs(args).withValidation().as(BeamExampleOptions.class);
+        PipelineOptionsFactory.fromArgs(args).withoutStrictParsing().as(BeamExampleOptions.class);
 
     runBeamExample(options);
   }
