@@ -1,5 +1,5 @@
 # Recommendation: Use Debian 12.
-# FROM debian:12-slim
+FROM debian:12-slim
 
 # FROM us-central1-docker.pkg.dev/cloud-dataproc/spark/dataproc_2.0:latest
 
