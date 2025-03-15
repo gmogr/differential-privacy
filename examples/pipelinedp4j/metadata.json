@@ -1,0 +1,22 @@
+{
+    "name": "Differential privacy Java flex template example",
+    "description": "An example differential privacy dataflow flex template for Java.",
+    "parameters": [
+      {
+        "name": "inputFilePath",
+        "label": "Input GCS destination",
+        "helpText": "The gcs path and filename prefix for reading input file.",
+        "regexes": [
+          "^gs:\\/\\/[^\\n\\r]+$"
+        ]
+      },
+      {
+        "name": "outputFilePath",
+        "label": "Output GCS destination",
+        "helpText": "The gcs path and filename prefix for writing output file.",
+        "regexes": [
+          "^gs:\\/\\/[^\\n\\r]+$"
+        ]
+      }
+    ]
+  }
