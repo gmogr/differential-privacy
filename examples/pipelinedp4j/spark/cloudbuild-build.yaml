@@ -1,10 +1,12 @@
 steps:
 - name: maven:3.3-jdk-8
+  dir: examples/pipelinedp4j/spark
   entrypoint: mvn
   args: ['clean', 'package']
 - name: 'gcr.io/cloud-builders/docker'
+  dir: examples/pipelinedp4j/spark
   script: |
-    docker build -t ${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest --file ./examples/pipelinedp4j/spark/Dockerfile ./examples/pipelinedp4j/spark
+    docker build -t ${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest .
   automapSubstitutions: true
 images:
 - '${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest'

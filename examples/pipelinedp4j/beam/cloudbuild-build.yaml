@@ -1,10 +1,10 @@
 steps:
   - name: maven:3.8.6-openjdk-11-slim
-    dir: examples/pipelinedp4j
+    dir: examples/pipelinedp4j/beam
     entrypoint: mvn
     args: ['clean', 'package']
   - name: google/cloud-sdk:slim
-    dir: examples/pipelinedp4j
+    dir: examples/pipelinedp4j/beam
     args:
     - "gcloud"
     - "dataflow"
