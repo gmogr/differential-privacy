@@ -1,5 +1,9 @@
 steps:
 - name: maven:3.8.6-openjdk-11-slim
+  dir: examples/pipelinedp4j
+  entrypoint: mvn
+  args: ['clean', 'package']
+- name: maven:3.8.6-openjdk-11-slim
   dir: examples/pipelinedp4j/spark
   entrypoint: mvn
   args: ['clean', 'package']
