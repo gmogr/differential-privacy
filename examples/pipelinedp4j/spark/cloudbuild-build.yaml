@@ -3,10 +3,6 @@ steps:
   dir: examples/pipelinedp4j
   entrypoint: mvn
   args: ['clean', 'package']
-- name: maven:3.8.6-openjdk-11-slim
-  dir: examples/pipelinedp4j/spark
-  entrypoint: mvn
-  args: ['clean', 'package']
 - name: 'gcr.io/cloud-builders/docker'
   dir: examples/pipelinedp4j/spark
   args: ['build','-t','${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest','.']
