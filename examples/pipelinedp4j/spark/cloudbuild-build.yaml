@@ -1,13 +1,13 @@
 steps:
-- name: maven:3.8.6-openjdk-11-slim
-  dir: examples/pipelinedp4j
-  entrypoint: mvn
-  args: ['clean', 'package']
-- name: 'gcr.io/cloud-builders/docker'
-  dir: examples/pipelinedp4j/spark
-  args: ['build','-t','${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest','.']
+  - name: maven:3.8.6-openjdk-11-slim
+    dir: examples/pipelinedp4j
+    entrypoint: mvn
+    args: ['clean', 'package']
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: examples/pipelinedp4j/spark
+    args: ['build','-t','${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest','.']
 images:
-- '${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest'
+  - '${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest'
 substitutions:
   _PIPELINE_NAME: differential-privacy
   _ARTIFACT_REGISTRY_NAME: europe-west4-docker.pkg.dev/${PROJECT_ID}/movsic-artifact-registry
