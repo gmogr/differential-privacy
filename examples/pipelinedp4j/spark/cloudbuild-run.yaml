@@ -10,7 +10,7 @@ steps:
     - "--class=${_JAVA_MAIN_CLASS}"
     - "--project=${PROJECT_ID}"
     - "--region=${_LOCATION}"
-    - "--service-account-email=${_SERVICE_ACCOUNT_EMAIL}"
+    - "--service-account=${_SERVICE_ACCOUNT_EMAIL}"
     - "--container-image=${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest"
     - "--"
     - "--inputFilePath=gs://${_INPUT_GCS_PATH}"
@@ -18,8 +18,7 @@ steps:
 substitutions:
   _PIPELINE_NAME: differential-privacy
   _ARTIFACT_REGISTRY_NAME: europe-west4-docker.pkg.dev/${PROJECT_ID}/movsic-artifact-registry
-  _BUCKET_NAME: movsic-dataflow-templates
-  _SERVICE_ACCOUNT_EMAIL: dp-dataflow@${PROJECT_ID}.iam.gserviceaccount.com
+  _SERVICE_ACCOUNT_EMAIL: dp-dataproc@${PROJECT_ID}.iam.gserviceaccount.com
   _LOCATION: europe-west4
   _JAVA_MAIN_CLASS: com.google.privacy.differentialprivacy.pipelinedp4j.examples.SparkExample
   _INPUT_GCS_PATH: movsic-dataflow-templates/input/netflix_data.csv
