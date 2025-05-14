@@ -1,24 +1,28 @@
 steps:
-  - name: maven:3.8.6-openjdk-11-slim
-    dir: examples/pipelinedp4j/beam
-    entrypoint: mvn
-    args: ['clean', 'package']
-  - name: google/cloud-sdk:slim
-    dir: examples/pipelinedp4j/beam
-    args:
-    - "gcloud"
-    - "dataflow"
-    - "flex-template"
-    - "build"
-    - "gs://${_BUCKET_NAME}/${_PIPELINE_NAME}/dataflow-flex-template.json"
-    - "--image-gcr-path=${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataflow-flex-template:latest"
-    - "--sdk-language=JAVA"
-    - "--flex-template-base-image=JAVA11"
-    - "--metadata-file=metadata.json"
-    - "--jar=${_JAR}"
-    - "--env=FLEX_TEMPLATE_JAVA_MAIN_CLASS=${_FLEX_TEMPLATE_JAVA_MAIN_CLASS}"
-    - "--cloud-build-service-account=projects/${PROJECT_ID}/serviceAccounts/${_SERVICE_ACCOUNT}"
-    - "--gcs-log-dir=gs://${_BUCKET_NAME}/cloudbuild_logs" #custom bucket or cloud build sa?
+- name: maven:3.8.6-openjdk-11-slim
+  dir: examples/pipelinedp4j
+  entrypoint: mvn
+  args: ['clean', 'package']
+- name: maven:3.8.6-openjdk-11-slim
+  dir: examples/pipelinedp4j/beam
+  entrypoint: mvn
+  args: ['clean', 'package']
+- name: google/cloud-sdk:slim
+  dir: examples/pipelinedp4j/beam
+  args:
+  - "gcloud"
+  - "dataflow"
+  - "flex-template"
+  - "build"
+  - "gs://${_BUCKET_NAME}/${_PIPELINE_NAME}/dataflow-flex-template.json"
+  - "--image-gcr-path=${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataflow-flex-template:latest"
+  - "--sdk-language=JAVA"
+  - "--flex-template-base-image=JAVA11"
+  - "--metadata-file=metadata.json"
+  - "--jar=${_JAR}"
+  - "--env=FLEX_TEMPLATE_JAVA_MAIN_CLASS=${_FLEX_TEMPLATE_JAVA_MAIN_CLASS}"
+  - "--cloud-build-service-account=projects/${PROJECT_ID}/serviceAccounts/${_SERVICE_ACCOUNT}"
+  - "--gcs-log-dir=gs://${_BUCKET_NAME}/cloudbuild_logs" #custom bucket or cloud build sa?
 substitutions:
   _PIPELINE_NAME: differential-privacy
   _BUCKET_NAME: movsic-dataflow-templates
