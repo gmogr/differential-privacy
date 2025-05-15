@@ -14,7 +14,7 @@ steps:
   - "--image-gcr-path=${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataflow-flex-template:latest"
   - "--sdk-language=JAVA"
   - "--flex-template-base-image=JAVA11"
-  - "--metadata-file=metadata.json"
+  - "--metadata-file=beam/metadata.json"
   - "--jar=${_JAR}"
   - "--env=FLEX_TEMPLATE_JAVA_MAIN_CLASS=${_FLEX_TEMPLATE_JAVA_MAIN_CLASS}"
   - "--cloud-build-service-account=projects/${PROJECT_ID}/serviceAccounts/${_SERVICE_ACCOUNT}"
