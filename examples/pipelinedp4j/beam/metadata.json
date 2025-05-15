@@ -11,9 +11,9 @@
         ]
       },
       {
-        "name": "outputFolder",
-        "label": "Output GCS destination folder",
-        "helpText": "The gcs folder path for writing output file.",
+        "name": "outputFilePath",
+        "label": "Output GCS destination",
+        "helpText": "The gcs path and filename prefix for writing output file.",
         "regexes": [
           "^gs:\\/\\/[^\\n\\r]+$"
         ]

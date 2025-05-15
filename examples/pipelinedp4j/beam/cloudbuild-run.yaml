@@ -13,7 +13,7 @@ steps:
   - "--temp-location=gs://${_BUCKET_NAME}/temp"
   - "--staging-location=gs://${_BUCKET_NAME}/staging"
   - "--parameters=inputFilePath=gs://${_INPUT_GCS_PATH}"
-  - "--parameters=outputFolder=gs://${_OUTPUT_GCS_PATH}"
+  - "--parameters=outputFilePath=gs://${_OUTPUT_GCS_PATH}"
 substitutions:
   _PIPELINE_NAME: differential-privacy
   _BUCKET_NAME: movsic-dataflow-templates
