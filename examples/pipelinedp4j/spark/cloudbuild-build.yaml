@@ -10,7 +10,5 @@ images:
 - '${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest'
 substitutions:
   _PIPELINE_NAME: differential-privacy
-  _ARTIFACT_REGISTRY_NAME: europe-west4-docker.pkg.dev/${PROJECT_ID}/movsic-artifact-registry
-  _SERVICE_ACCOUNT: dp-cloudbuild@${PROJECT_ID}.iam.gserviceaccount.com
 options:
   logging: CLOUD_LOGGING_ONLY
