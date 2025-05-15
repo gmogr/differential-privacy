@@ -14,7 +14,7 @@ steps:
   - "--container-image=${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest"
   - "--"
   - "--inputFilePath=gs://${_INPUT_GCS_PATH}"
-  - "--outputFilePath=gs://${_OUTPUT_GCS_PATH}"
+  - "--outputFolder=gs://${_OUTPUT_GCS_PATH}"
 substitutions:
   _PIPELINE_NAME: differential-privacy
   _ARTIFACT_REGISTRY_NAME: europe-west4-docker.pkg.dev/${PROJECT_ID}/movsic-artifact-registry
