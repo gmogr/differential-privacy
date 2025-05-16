@@ -51,7 +51,6 @@ import org.apache.beam.sdk.transforms.Create;
 import org.apache.beam.sdk.transforms.MapElements;
 import org.apache.beam.sdk.transforms.SerializableFunction;
 import org.apache.beam.sdk.values.PCollection;
-import org.apache.beam.runners.dataflow.options.DataflowPipelineOptions;
 
 /**
  * An end-to-end example how to compute DP metrics on a Netflix dataset using the library on Beam.
@@ -93,8 +92,6 @@ public final class BeamExample {
   }
 
   public static void main(String[] args) {
-    PipelineOptionsFactory.register(BeamExampleOptions.class);
-    PipelineOptionsFactory.register(DataflowPipelineOptions.class);
     BeamExampleOptions options =
         PipelineOptionsFactory.fromArgs(args).withValidation().as(BeamExampleOptions.class);
 
