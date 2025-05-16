@@ -53,36 +53,25 @@
             <artifactId>beam-sdks-java-core</artifactId>
             <version>${beam.version}</version>
         </dependency>
-     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>direct-runner</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <!-- Makes the DirectRunner available when running a pipeline. -->
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.beam</groupId>
-                    <artifactId>beam-runners-direct-java</artifactId>
-                    <version>${beam.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.beam</groupId>
+                <artifactId>beam-runners-direct-java</artifactId>
+                <version>${beam.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
 
-        <profile>
-            <id>dataflow-runner</id>
-            <!-- Makes the DataflowRunner available when running a pipeline. -->
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.beam</groupId>
-                    <artifactId>beam-runners-google-cloud-dataflow-java</artifactId>
-                    <version>${beam.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+        <id>dataflow-runner</id>
+        <!-- Makes the DataflowRunner available when running a pipeline. -->
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.beam</groupId>
+                <artifactId>beam-runners-google-cloud-dataflow-java</artifactId>
+                <version>${beam.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </dependencies>
 </project>
