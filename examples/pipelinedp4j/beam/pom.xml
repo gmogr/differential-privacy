@@ -54,24 +54,18 @@
             <version>${beam.version}</version>
         </dependency>
 
-        <dependencies>
-            <dependency>
-                <groupId>org.apache.beam</groupId>
-                <artifactId>beam-runners-direct-java</artifactId>
-                <version>${beam.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-        </dependencies>
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-runners-direct-java</artifactId>
+            <version>${beam.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
-        <id>dataflow-runner</id>
-        <!-- Makes the DataflowRunner available when running a pipeline. -->
-        <dependencies>
-            <dependency>
-                <groupId>org.apache.beam</groupId>
-                <artifactId>beam-runners-google-cloud-dataflow-java</artifactId>
-                <version>${beam.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-        </dependencies>
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-runners-google-cloud-dataflow-java</artifactId>
+            <version>${beam.version}</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 </project>
