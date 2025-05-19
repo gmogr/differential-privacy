@@ -154,8 +154,13 @@ public final class BeamExample {
     writeOutput(anonymizedMovieMetrics, options.getOutputFilePath());
 
     // Run the scheduled calculations in the pipeline.
-    pipeline.run().waitUntilFinish();
-    System.out.println("Finished calculations.");
+    // For a Dataflow Flex Template, do NOT call waitUntilFinish().
+    PipelineResult result = pipeline.run();
+
+    if (options.getRunner().getName().equals("DirectRunner")) {
+      result.waitUntilFinish();
+      System.out.println("Finished calculations.");
+    }
   }
 
   /**
