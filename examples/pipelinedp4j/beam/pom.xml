@@ -31,7 +31,9 @@
     <packaging>jar</packaging>
 
     <properties>
-        <beam.version>2.63.0</beam.version>
+        <beam.version>2.65.0</beam.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <!-- Otherwise you get errors like https://shorturl.at/7mfCi -->
         <exec.cleanupDaemonThreads>false</exec.cleanupDaemonThreads>
         <!-- To get rid of the encoding warning. -->
@@ -70,10 +72,40 @@
             <version>${beam.version}</version>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- Google Cloud I/O -->
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-sdks-java-io-google-cloud-platform</artifactId>
+            <version>${beam.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-dataflow</artifactId>
+            <version>0.37.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-artifact-registry</artifactId>
+            <version>1.32.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-storage</artifactId>
+            <version>2.33.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+
             <!-- The maven shade plugin is used to create an uber-jar with all the
             dependencies needed to run as a standalone jar.
             Do not minimize the jar since that removes some of the required
@@ -90,7 +122,7 @@
                     </goals>
                     <configuration>
                     <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer">
                     </transformer>
                     </transformers>
                     <filters>
