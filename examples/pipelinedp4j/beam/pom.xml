@@ -37,6 +37,8 @@
         <exec.cleanupDaemonThreads>false</exec.cleanupDaemonThreads>
         <!-- To get rid of the encoding warning. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
+        <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
     </properties>
 
     <dependencies>
@@ -54,6 +56,7 @@
             <version>${beam.version}</version>
         </dependency>
 
+        <!-- Direct Runner -->
         <dependency>
             <groupId>org.apache.beam</groupId>
             <artifactId>beam-runners-direct-java</artifactId>
@@ -61,6 +64,7 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Dataflow Runner -->
         <dependency>
             <groupId>org.apache.beam</groupId>
             <artifactId>beam-runners-google-cloud-dataflow-java</artifactId>
@@ -68,4 +72,47 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version> 
+            </plugin>
+
+            <!-- The maven shade plugin is used to create an uber-jar with all the
+            dependencies needed to run as a standalone jar.
+            Do not minimize the jar since that removes some of the required
+            classes for the runners. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin.version}</version>
+                <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                    <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                    <transformers>
+                        <transformer implementation="com.google.privacy.differentialprivacy.pipelinedp4j.examples.BeamExample"/>
+                    </transformers>
+                    <filters>
+                        <filter>
+                        <artifact>*:*</artifact>
+                        <excludes>
+                            <exclude>META-INF/*.SF</exclude>
+                            <exclude>META-INF/*.DSA</exclude>
+                            <exclude>META-INF/*.RSA</exclude>
+                        </excludes>
+                        </filter>
+                    </filters>
+                    </configuration>
+                </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
