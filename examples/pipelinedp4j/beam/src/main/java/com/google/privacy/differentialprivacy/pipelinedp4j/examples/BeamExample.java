@@ -51,6 +51,7 @@ import org.apache.beam.sdk.transforms.Create;
 import org.apache.beam.sdk.transforms.MapElements;
 import org.apache.beam.sdk.transforms.SerializableFunction;
 import org.apache.beam.sdk.values.PCollection;
+import org.apache.beam.sdk.PipelineResult;
 
 /**
  * An end-to-end example how to compute DP metrics on a Netflix dataset using the library on Beam.
