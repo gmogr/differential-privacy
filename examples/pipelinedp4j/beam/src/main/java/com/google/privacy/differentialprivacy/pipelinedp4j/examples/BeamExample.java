@@ -128,7 +128,7 @@ public final class BeamExample {
                     /* valueBounds= */ new Bounds(/* minValue= */ 1.0, /* maxValue= */ 5.0)))
             .build(new TotalBudget(/* epsilon= */ 1.1, /* delta= */ 1e-10), NoiseKind.LAPLACE);
     // Run the query with DP parameters.
-    PCollection<QueryPerGroupResult<String>> result = query.run();
+    PCollection<QueryPerGroupResult<String>> queryResult = query.run();
 
     // Convert the result to better representation, i.e. to MovieMetrics.
     var movieMetricsCoder = AvroCoder.of(MovieMetrics.class);
@@ -143,7 +143,7 @@ public final class BeamExample {
         };
     // We now have our anonymized metrics of movie views.
     PCollection<MovieMetrics> anonymizedMovieMetrics =
-        result
+        queryResult
             .apply(
                 "Map query result to MovieMetrics",
                 MapElements.into(movieMetricsCoder.getEncodedTypeDescriptor())
