@@ -31,14 +31,11 @@
     <packaging>jar</packaging>
 
     <properties>
-        <beam.version>2.65.0</beam.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <beam.version>2.63.0</beam.version>
         <!-- Otherwise you get errors like https://shorturl.at/7mfCi -->
         <exec.cleanupDaemonThreads>false</exec.cleanupDaemonThreads>
         <!-- To get rid of the encoding warning. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
     </properties>
 
