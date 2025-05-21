@@ -14,6 +14,5 @@ steps:
   - "--parameters=outputFilePath=${_OUTPUT_GCS_PATH}"
 substitutions:
   _PIPELINE_NAME: differential-privacy
-  _LOCATION: europe-west4
 options:
   logging: CLOUD_LOGGING_ONLY

@@ -18,7 +18,7 @@ steps:
   - "--jar=${_JAR}"
   - "--env=FLEX_TEMPLATE_JAVA_MAIN_CLASS=${_FLEX_TEMPLATE_JAVA_MAIN_CLASS}"
   - "--cloud-build-service-account=projects/${PROJECT_ID}/serviceAccounts/${_SERVICE_ACCOUNT}"
-  - "--gcs-log-dir=gs://${_DATAFLOW_TEMAPLATE_BUCKET_NAME}/cloudbuild_logs" #custom service account with cloud build requires options.logging: CLOUD_LOGGING_ONLY but gcloud dataflow flex-template build does not support it
+  - "--gcs-log-dir=${_DATAFLOW_TEMAPLATE_BUCKET_NAME}/cloudbuild_logs" #custom service account with cloud build requires options.logging: CLOUD_LOGGING_ONLY but gcloud dataflow flex-template build does not support it
 substitutions:
   _PIPELINE_NAME: differential-privacy
   _JAR: beam/target/beam-1.0-SNAPSHOT.jar
