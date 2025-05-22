@@ -1,0 +1,22 @@
+steps:
+- name: google/cloud-sdk:slim
+  args:
+  - "gcloud"
+  - "dataproc"
+  - "batches"
+  - "submit"
+  - "spark"
+  - "--batch=${_PIPELINE_NAME}-${BUILD_ID}"
+  - "--class=${_JAVA_MAIN_CLASS}"
+  - "--project=${PROJECT_ID}"
+  - "--region=${_LOCATION}"
+  - "--service-account=${_SERVICE_ACCOUNT_EMAIL}"
+  - "--container-image=${_ARTIFACT_REGISTRY_NAME}/${_PIPELINE_NAME}/dataproc-template:latest"
+  - "--"
+  - "--inputFilePath=${_INPUT_GCS_PATH}"
+  - "--outputFolder=${_OUTPUT_GCS_PATH}"
+substitutions:
+  _PIPELINE_NAME: differential-privacy
+  _JAVA_MAIN_CLASS: com.google.privacy.differentialprivacy.pipelinedp4j.examples.SparkExample
+options:
+  logging: CLOUD_LOGGING_ONLY

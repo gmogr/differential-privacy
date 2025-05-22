@@ -1,0 +1,18 @@
+steps:
+- name: google/cloud-sdk:slim
+  args:
+  - "gcloud"
+  - "dataflow"
+  - "flex-template"
+  - "run"
+  - "${_PIPELINE_NAME}"
+  - "--template-file-gcs-location=${_DATAFLOW_TEMAPLATE_BUCKET_NAME}/${_PIPELINE_NAME}/dataflow-flex-template.json"
+  - "--project=${PROJECT_ID}"
+  - "--region=${_LOCATION}"
+  - "--service-account-email=${_SERVICE_ACCOUNT_EMAIL}"
+  - "--parameters=inputFilePath=${_INPUT_GCS_PATH}"
+  - "--parameters=outputFilePath=${_OUTPUT_GCS_PATH}"
+substitutions:
+  _PIPELINE_NAME: differential-privacy
+options:
+  logging: CLOUD_LOGGING_ONLY
